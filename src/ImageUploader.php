@@ -256,9 +256,13 @@ class ImageUploader {
 
     $new_name = $this->getHash($identifier);
     $destination_path = $this->getImagePath($new_name);
-    $result = move_uploaded_file($image["tmp_name"], $destination_path);
+    $success = move_uploaded_file($image["tmp_name"], $destination_path);
 
-    return $result;
+    if ($success) {
+      $success = $new_name; // If the image got uploaded successfully, return the hashed filename
+    }
+
+    return $success;
   }
 
   /**

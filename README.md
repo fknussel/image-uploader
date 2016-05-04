@@ -57,7 +57,7 @@ try {
   $uid = time() . rand();
   $success = $imageUploader->upload($_FILES[INPUT_FIELD_NAME], $uid);
 
-  echo json_encode(array("sucess" => $success););
+  echo json_encode(array("success" => $success));
 } catch (Exception $e) {
   die($e);
 }
