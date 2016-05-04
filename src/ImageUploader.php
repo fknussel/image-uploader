@@ -269,9 +269,10 @@ class ImageUploader {
    * Serve an image
    * @param string $identifier Image identifier
    * @param function $callback Optional callback, allows for extra image manipulation
+   * @param array $callback_args Callback params
    * @return boolean Indicates whether the image has been served successfully
    */
-  public function serve($filename, $callback = null) {
+  public function serve($filename, $callback = null, $callback_args = null) {
     if (!$this->exists($filename)) {
       return false;
     }
@@ -289,7 +290,7 @@ class ImageUploader {
     }
 
     if ($callback !== null) {
-      $callback($image);
+      $callback($image, $callback_args);
     }
 
     header("Content-Type: " . $mime_type);
